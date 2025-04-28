@@ -4,20 +4,24 @@ services:
     image: ghcr.io/nerasse/my-code-server:main
     ports:
       - "8585:8586"
+      - "3000:3000"
+      - "3001:3001"
+      - "3002:3002"
     environment:
       - PORT=8586
-      - TOKEN=sometoken
-    #store the data in the host (optional : uncomment the volumes section and change the path)
-    #volumes:
-    #  - /home/<USER>/appdata/my-code-server:/home/vscodeuser/
+      - TOKEN=${CODE_SERVER_TOKEN}
+    volumes:
+     - vscode-data:/home/vscodeuser/
     
     #optional : add the network
     networks:
       - vscode-server-network
+
+volumes:
+  vscode-data:
 
 #optional : add the network 
 networks:
   vscode-server-network:
     external: false
     name: vscode-server-network
-
