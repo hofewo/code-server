@@ -12,10 +12,10 @@ services:
       - TOKEN=${CODE_SERVER_TOKEN}
     volumes:
      - vscode-data:/home/vscodeuser/
-    
     #optional : add the network
     networks:
       - vscode-server-network
+    restart: unless-stopped  # <--- This ensures restart on failure
 
 volumes:
   vscode-data:
